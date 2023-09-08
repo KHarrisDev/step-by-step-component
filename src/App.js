@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+// 1. Build the UI from scratch
+//    - include classes, dummy data, static state and logic that statically renders the component view
+// 2. Add event listeners
+//    - pass callback func in event handler so it's not immediately called
+// 3. Add state to make component interactive
+//    - use state w/event handlers
 
-function App() {
+// !!!!!!! STOP AT VIDEO 60
+
+const messages = [
+  "Learn React ⚛️",
+  "Apply for jobs 💼",
+  "Invest your new income 🤑",
+];
+
+export default function App() {
+  const [ step, setStep ] = useState(1);
+
+  const handlePrevious = () => {
+    alert("previous");
+  }
+
+  const handleNext = () => {
+    alert("next");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="steps">
+      <div className="numbers">
+        <div className={`${step >= 1 ? "active" : ""}`}>1</div>
+        <div className={`${step >= 2 ? "active" : ""}`}>2</div>
+        <div className={`${step >= 3 ? "active" : ""}`}>3</div>
+      </div>
+
+      <p className="message">Step {step}: {messages[step - 1]}</p>
+
+      <div className="buttons">
+        <button 
+          style={{ backgroundColor: "#7950f2", color:'fff'}}
+          onClick={handlePrevious}  
         >
-          Learn React
-        </a>
-      </header>
+          Previous
+        </button>
+        <button 
+          style={{ backgroundColor: "#7950f2", color:'fff'}}
+          onClick={handleNext}   
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
-
-export default App;
